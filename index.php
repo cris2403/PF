@@ -32,50 +32,85 @@
     <br>
     <br>
 
-    <h2 class="carousel_title">Destaques</h2>
-    <div class="slideshow-container">
-
-        <div class="mySlides fade">
-            <img class="carousel_image" src="images/dishonored.jpg">
+    <div class="intro-section">
+        <div class="intro-content">
+            <h1>Bem-Vindo À Game On</h1>
+            <br>
+            <p>A tua loja preferida para comprar os últimos jogos digitais</p>
+            <p>Clica no botão abaixo para visitar o nosso catálogo ou explora o resto do site.</p>
+            <a class="intro-button" href="#">Compra Agora</a>
         </div>
-
-        <div class="mySlides fade">
-            <img class="carousel_image" src="images/prey.jpg">
-        </div>
-
-        <div class="mySlides fade">
-            <img class="carousel_image" src="images/war.jpeg">
+        <div class="intro-image">
+            <img src="images/LogoImg.png" alt="Imagem Top">
         </div>
     </div>
+
+    <br>
+    <br>
     <br>
 
-    <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
+    <h2 class="carousel_title">Destaques</h2>
+    <br>
+    <div class="slideshow-container">
+        <!--Adicionar mais-->
+        <div class="slide">
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <img src="images/dishonored.jpg" alt="Dishonored 2">
+            <div class="text">
+                <h2>Dishonored 2</h2>
+                <p>Nigga Ganda Fixe</p>
+                <p>10€</p>
+            </div>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
+        <!-------------------------------------->
+        <div class="slide">
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <img src="images/prey.jpg" alt="Prey">
+            <div class="text">
+                <h2>Prey</h2>
+                <p>Preto Fudido</p>
+                <p>14,99€</p>
+            </div>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
+        <div class="slide">
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <img src="images/war.jpeg" alt="Middle-Earth: Shadow of War">
+            <div class="text">
+                <h2>Middle-Earth: Shadow of War</h2>
+                <p>88</p>
+                <p>9,99€</p>
+            </div>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
     </div>
-
     <script>
-    let slideIndex = 0;
-    showSlides();
-    function showSlides() {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".slide");
+        function showSlide(index) {
+            if (index < 0) {
+                index = slides.length - 1;
+            } else if (index >= slides.length) {
+                index = 0;
+            }
+            slides.forEach((slide) => {
+                slide.style.display = "none";
+            });
+            slides[index].style.display = "block";
+            currentSlide = index;
         }
-        slideIndex++;
-        if (slideIndex > slides.length) {slideIndex = 1}    
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
+        function changeSlide(n) {
+            showSlide(currentSlide + n);
         }
-        slides[slideIndex-1].style.display = "block";  
-        dots[slideIndex-1].className += " active";
-        setTimeout(showSlides, 4000);
-    }
+        function autoSlide() {
+            changeSlide(1);
+        }
+        showSlide(0);
+        setInterval(autoSlide, 3000);
     </script>
 
     
+
 </body>
 </html>
