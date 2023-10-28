@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet">
     <title>Game On | Login</title>
@@ -10,11 +10,11 @@
     <div class="login-container">
         <h2>Login</h2>
         <form class="login-form" action="php/login.php" method="POST">
-            <input class="login-input" name="username" type="text" placeholder="Username">
-            <input class="login-input" name="password" type="password" placeholder="Password">
+            <input class="login-input" id="username" name="username" type="text" placeholder="Username" required>
+            <input class="login-input" id="password" name="password" type="password" placeholder="Password" required>
             <div class="button-container">
                 <button class="login-button" type="submit">Login</button>
-                <a href="register.html" class="register-button">Register</a>
+                <a href="register.html" class="register-button">Registar</a>
             </div>
         </form>
     </div>

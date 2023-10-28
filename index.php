@@ -15,9 +15,18 @@
     <div class="nav">
         <input type="checkbox" id="nav-check">
         <div class="nav-header">
-            <a href="index.php">
-				<img class="logo" src="images/LogoA.png" alt="Logo">
-			</a>
+            <?php if(!isset($_SESSION['username'])){
+                    echo '<a href="index.php">';
+                        echo '<img class="logo" src="images/LogoF.png" alt="Logo">';
+                    echo '</a>';
+                    }
+                    else
+                    {
+                        echo '<a href="index.php">';
+                            echo '<img class="logo" src="images/LogoA.png" alt="Logo">';
+                        echo '</a>';
+                    }
+            ?>
         </div>
         <div class="nav-btn">
             <label for="nav-check">
@@ -131,7 +140,14 @@
     <div class="container">
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="images/LogoA.png" alt="Logo">
+            <?php if(!isset($_SESSION['username'])){
+                    echo '<img class="logo" src="images/LogoF.png" alt="Logo">';
+                    }
+                    else
+                    {
+                        echo '<img class="logo" src="images/LogoA.png" alt="Logo">';
+                    }
+            ?>
             </div>
             <div class="footer-links">
                 <ul>
