@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <?php
-    include "php/database.php";
-    $conn=mysqli_connect("LocalHost","root","","ya");
-    session_start();
+include "php/database.php";
+include "php/items.php";
+$conn=mysqli_connect("LocalHost","root","","ya");
+session_start();
+
+$productID = isset($_GET['id']) ? $_GET['id'] : null;
+
+$itemData = searchInventoryItem($conn, $productID);
+
+$title = "Game On | " . ($itemData !== null ? $itemData->nome : "Product Not Found");
 ?>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet">
-    <title>Game On | Index</title>
+    <title><?= $title ?></title>
 </head>
 <body>
     <div class="nav">
@@ -54,83 +61,48 @@
     <br>
     <br>
 
-    <div class="intro-section">
-        <div class="intro-content">
-            <h1>Bem-Vindo À Game On</h1>
-            <br>
-            <p>A tua loja preferida para comprar os últimos jogos digitais</p>
-            <p>Clica no botão abaixo para visitar o nosso catálogo ou explora o resto do site.</p>
-            <a class="intro-button" href="#">Compra Agora</a>
-        </div>
-        <div class="intro-image">
-            <img src="images/LogoImg.png" alt="Imagem Top">
-        </div>
-    </div>
-
-    <br>
-    <br>
-    <br>
-
-    <h2 class="carousel_title">Destaques</h2>
-    <br>
-    <div class="slideshow-container">
-        <!--Adicionar mais-->
-        <div class="slide">
-            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-            <img src="images/dishonored.png" alt="Dishonored 2">
-            <div class="text">
-                <h2>Dishonored 2</h2>
-                <p>Descrição</p>
-                <p>10€</p>
-            </div>
-            <a class="next" onclick="changeSlide(1)">&#10095;</a>
-        </div>
-        <!-------------------------------------->
-        <div class="slide">
-            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-            <img src="images/prey.png" alt="Prey">
-            <div class="text">
-                <h2>Prey</h2>
-                <p>Descrição</p>
-                <p>14,99€</p>
-            </div>
-            <a class="next" onclick="changeSlide(1)">&#10095;</a>
-        </div>
-        <div class="slide">
-            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-            <img src="images/war.jpeg" alt="Middle-Earth: Shadow of War">
-            <div class="text">
-                <h2>Middle-Earth: Shadow of War</h2>
-                <p>Descrição</p>
-                <p>9,99€</p>
-            </div>
-            <a class="next" onclick="changeSlide(1)">&#10095;</a>
-        </div>
-    </div>
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll(".slide");
-        function showSlide(index) {
-            if (index < 0) {
-                index = slides.length - 1;
-            } else if (index >= slides.length) {
-                index = 0;
+    <div class="product-section">
+        <div class="product-section">
+        <?php
+            if ($itemData !== null) {
+                echo '<div class="product-container">';
+                echo '<div class="product-image">';
+                echo '<img src="data:image/jpeg;base64,' . base64_encode($itemData->img) . '" alt="' . $itemData->nome . '">';
+                echo '</div>';
+                echo '<div class="product_details">';
+                echo '<h1 class="product-title">' . $itemData->nome . '</h1>';
+                echo '<br>';
+                echo '<br>';
+                echo '<p class="product-description">' . $itemData->desc . '</p>';
+                echo '<br>';
+                echo '<br>';
+                echo '<br>';
+                echo '<br>';
+                echo '<br>';
+                echo '<strong class="product-price">' . $itemData->preco . '€</strong>';
+                echo '<br>';
+                echo '<br>';
+                echo '<?php if (isset($_SESSION["user"]) && isset($_SESSION["user"]["id"])) : ?>';
+                    echo '<form action="php/cartings.php" method="post">';
+                        echo '<input type="hidden" name="productID" value="1">';
+                        echo '<button type="submit">Adicionar ao Carrinho</button>';
+                    echo '</form>';
+                echo '<?php else : ?>';
+                    echo '<p>Faça login para adicionar ao carrinho.</p>';
+                echo '<?php endif; ?>';               
+                echo '</div>';
+                echo '<div class="product-trailer">';
+                echo '<iframe width="100%" height="315" src="https://www.youtube.com/embed/' . $itemData->trailer . '" frameborder="0" allowfullscreen></iframe>';
+                echo '</div>';
+                echo '</div>';
+            } else {
+                echo '<div class="product-container">';
+                echo '<p>Product not found.</p>';
+                echo '</div>';
             }
-            slides.forEach((slide) => {
-                slide.style.display = "none";
-            });
-            slides[index].style.display = "block";
-            currentSlide = index;
-        }
-        function changeSlide(n) {
-            showSlide(currentSlide + n);
-        }
-        function autoSlide() {
-            changeSlide(1);
-        }
-        showSlide(0);
-        setInterval(autoSlide, 3000);
-    </script>
+        ?>
+        </div>
+    </div>
 
     <br>
     <br>

@@ -8,6 +8,10 @@
   
   body {
     margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     font-family: "Roboto", sans-serif;
     font-size: 16px;
     background-image: url("../images/background.jpg");
@@ -31,6 +35,7 @@
     height: 100px;
     width: 200px;
     margin-left: 20px;
+    padding: 13px 10px 13px 10px;
   }
   
   .nav > .nav-header > .nav-title {
@@ -361,4 +366,153 @@
 .login-button, .register-button {
   flex: 1;
   margin: 0 5px;
+}
+
+.catalog-title {
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 2px 2px 4px #515151;
+}
+
+.catalog {
+  background-color: #1d1d1d;
+  color: #fff;
+  padding: 40px 0;
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.catalog-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.product-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.product-col {
+  flex: 0 0 calc(20% - 20px);
+  margin: 10px;
+  text-align: center;
+  border: 1px solid #ff0000;
+  padding: 20px;
+  background-color: #2d2d2d;
+}
+
+.product-col:hover{
+  box-shadow: 0 0 30px #a00000;
+}
+
+.product-col:hover .product-title{
+  color: #ff0000;
+}
+
+.product-item {
+  text-decoration: none;
+  color: #ff0000;
+  display: block;
+}
+
+.product-image {
+  max-width: 50%;
+  height: auto;
+}
+
+.product-details {
+  text-align: center;
+}
+
+.product-title {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #fff;
+}
+
+.product-price {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.product-section {
+  background-color: #1d1d1d;
+  color: #fff;
+  text-align: center;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding: 53px;
+  background-color: #2d2d2d;
+  border: 2px solid #ff0000;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.product-image {
+  flex: 1;
+  max-width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.product_details {
+  flex: 1;
+  max-width: 50%;
+  padding: 10px;
+}
+
+.product-trailer {
+  flex: 2;
+  max-width: 100%;
+  padding: 10px;
+  text-align: center;
+  margin-left: 70px;
+}
+
+.product-trailer iframe {
+  width: 100%;
+  height: 460px;
+  margin: 0 auto;
+}
+
+
+.product-title {
+  font-size: 28px;
+  margin: 15px 0;
+  color: #fff;
+}
+
+.product-price {
+  font-weight: bold;
+  color: #ff0000;
+  font-size: 24px;
+}
+
+.product-description {
+  font-size: 20px;
+  color: #fff;
+}
+
+.product-button {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.product-button:hover {
+  background-color: #a00000;
 }
